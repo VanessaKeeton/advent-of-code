@@ -42,11 +42,6 @@ const reprintsListText = inputText.split('\n\n')[1];
 const orderingRules = orderingRulesText.split('\n').map(row => row.split('|'));
 const reprintsList = reprintsListText.split('\n').map(row => row.split(','));
 
-// console.log(orderingRulesText);
-// console.log(reprintsListText);
-// console.log(orderingRules);
-// console.log(reprintsList);
-
 // map ordering rules by the first element
 const orderingRulesMap = orderingRules.reduce((acc, [first, second]) => {
   if (!acc[first]) {
@@ -56,10 +51,7 @@ const orderingRulesMap = orderingRules.reduce((acc, [first, second]) => {
   return acc;
 }, {});
 
-// console.log(orderingRulesMap);
-
 // find the rows that are in the correct order
-
 const correctlyOrderedRows = reprintsList.filter(row => {
   for (let i = 0; i < row.length - 1; i++) {
     if (!orderingRulesMap[row[i]] || !orderingRulesMap[row[i]].includes(row[i + 1])) {
@@ -78,26 +70,13 @@ const incorrectlyOrderedRows = reprintsList.filter(row => {
   return false;
 });
 
-// console.log(incorrectlyOrderedRows);
-
 const sortRow = (row) => {
-  // console.log('row', row);
   return row.sort((a, b) =>{
     return orderingRulesMap[b]?.includes(a) ? 1 : -1;
   });
 };
 
 const sortedRows = incorrectlyOrderedRows.map(row => sortRow(row));
-
-// console.log('sortedRows', sortedRows);
-
-// console.log(correctlyOrderedRows);
-
-// find the middle number in each row (assume the row has an odd number of elements) and sum them
-// const sumOfMiddle = correctlyOrderedRows.reduce((acc, row) => {
-//   const middleIndex = Math.floor(row.length / 2);
-//   return acc + parseInt(row[middleIndex]);
-// }, 0);
 
 const sumOfMiddleFunction = (rows) => {
   return rows.reduce((acc, row) => {
