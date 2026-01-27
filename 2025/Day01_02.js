@@ -43,7 +43,7 @@ function countZeroPasses(max,dir,steps,start) {
   if (dir === 'L') {
     if (i === 0) {
       count++;
-      i = 99;
+      i = max;
       p--;
     }
     // Left Loop
