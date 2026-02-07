@@ -10,18 +10,6 @@ async function processFileByFirstEmptyLine(filePath) {
     const numberGrid = [];
     let lastLine;
 
-    function cleanLine(line) {
-      // 1. Replace one or more whitespace characters (spaces, tabs) with a single space.
-      // The '\s+' regex matches one or more whitespace characters globally ('g' flag).
-      let cleaned = line.replace(/\s+/g, ' ');
-
-      // 2. Trim leading/trailing whitespace from the resulting line.
-      cleaned = cleaned.trim();
-  
-      return cleaned;
-    }
-
-
     try {
         const fileStream = fs.createReadStream(filePath);
 
